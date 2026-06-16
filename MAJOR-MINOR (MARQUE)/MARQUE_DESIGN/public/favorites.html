@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARQUE DESIGN - Favorites</title>
+  <link rel="stylesheet" href="/css/styles.css">  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/preloader.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a href="/" class="logo">MARQUE <span>DESIGN</span></a>
+      
+      <nav id="nav-menu">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/cars">Cars</a>
+        <a href="/customize">Customize</a>
+        <a href="/favorites" class="active">Favorites</a>
+        <a href="/checkout">Checkout</a>
+        <a href="/profile">Profile</a>
+        <a href="/login" id="auth-link">Sign In</a>
+      </nav>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>Your Favorites</h1>
+      <p>Saved builds appear here. You can proceed to checkout anytime.</p>
+    </section>
+    <section id="fav-list" class="grid"></section>
+  </main>
+  <footer>
+    <div class="container">© 2025 MARQUE DESIGN</div>
+  </footer>
+  <script src="/js/navbar.js"></script>  <script src="/js/common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const list = document.getElementById('fav-list');
+      
+      try {
+        const currentUser = MNS.user.getCurrentUser();
+        if (!currentUser) {
+          const empty = document.createElement('div');
+          empty.className = 'card';
+          empty.innerHTML = '<h3>Please log in</h3><p class="meta">You need to be logged in to view your favorites.</p><div class="actions"><a class="btn" href="/login">Sign In</a></div>';
+          list.appendChild(empty);
+          return;
+        }
+
+        // Get user ID - try both id and _id fields
+        const userId = currentUser.id || currentUser._id;
+        console.log('Fetching favorites for user:', userId, currentUser);
+        
+        const favorites = await MNS.api.getFavorites(userId);
+        
+        if (!favorites.length) {
+          const empty = document.createElement('div');
+          empty.className = 'card';
+          empty.innerHTML = '<h3>No favorites yet</h3><p class="meta">Go to Customize to save builds.</p><div class="actions"><a class="btn" href="/customize">Start Customizing</a></div>';
+          list.appendChild(empty);
+        } else {
+          favorites.forEach((f) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            // Get car name from populated car_id
+            const carName = f.car_id?.name || 'Unknown Car';
+            const carImage = f.car_id?.image || '';
+            const basePrice = f.car_id?.base_price || 0;
+            
+            // Get configuration details
+            const config = f.configuration || {};
+            const engine = config.engine || 'Standard';
+            const exhaust = config.exhaust || 'Standard';
+            const spoiler = config.spoiler || 'None';
+            const fabric = config.fabric || 'Standard';
+            const color = config.color || 'Black';
+            const totalPrice = config.totalPrice || basePrice;
+            
+            // Create image element
+            let imageHTML = '';
+            if (carImage) {
+              imageHTML = `
+                <div class="car-image" style="width: 100%; height: 200px; margin-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                  <img src="/images/${carImage}" alt="${carName}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;font-size:18px;font-weight:bold;\\'>${carName}</div>'">
+                </div>
+              `;
+            }
+            
+            card.innerHTML = `
+              ${imageHTML}
+              <h3>${carName} Build</h3>
+              <p class="meta"><strong>Engine:</strong> ${engine}</p>
+              <p class="meta"><strong>Exhaust:</strong> ${exhaust}</p>
+              <p class="meta"><strong>Spoiler:</strong> ${spoiler}</p>
+              <p class="meta"><strong>Interior:</strong> ${fabric}</p>
+              <p class="meta"><strong>Color:</strong> ${color}</p>
+              <p class="meta" style="font-size: 1.2em; font-weight: bold; color: var(--accent); margin-top: 10px;">Total Price: $${totalPrice.toLocaleString()}</p>
+              <div class="actions">
+                <a class="btn" href="/customize?model=${encodeURIComponent(carName)}&image=${encodeURIComponent(carImage)}&basePrice=${basePrice}&carId=${f.car_id?._id || ''}">Edit Build</a>
+                <button class="btn secondary" data-remove="${f._id}">Remove</button>
+              </div>
+            `;
+            list.appendChild(card);
+          });
+
+          list.addEventListener('click', async (e) => {
+            const favoriteId = e.target?.dataset?.remove;
+            if (favoriteId) {
+              if (confirm('Are you sure you want to remove this favorite?')) {
+                try {
+                  await MNS.api.deleteFavorite(favoriteId);
+                  location.reload();
+                } catch (error) {
+                  console.error('Failed to delete favorite:', error);
+                  alert('Failed to delete favorite. Please try again.');
+                }
+              }
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Failed to load favorites:', error);
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'card';
+        errorDiv.innerHTML = '<h3>Error loading favorites</h3><p class="meta">Please try refreshing the page.</p><div class="actions"><button class="btn" onclick="location.reload()">Retry</button></div>';
+        list.appendChild(errorDiv);
+      }
+    });
+  </script>
+  
+  <!-- Preloader Script -->
+  <script src="/js/preloader.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARQUE DESIGN - Customize</title>
+  <link rel="stylesheet" href="/css/styles.css">  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/preloader.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a href="/" class="logo">MARQUE <span>DESIGN</span></a>
+      
+      <nav id="nav-menu">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/cars">Cars</a>
+        <a href="/customize" class="active">Customize</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/checkout">Checkout</a>
+        <a href="/profile">Profile</a>
+        <a href="/login" id="auth-link">Sign In</a>
+      </nav>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero lux">
+      <div class="hero-bg" id="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Build Your Car</h1>
+        <p id="model-label" class="meta">Model: -</p>
+        <p id="category-label" class="meta">Category: -</p>
+        <p id="base-price-label" class="meta">Base Price: -</p>
+      </div>
+    </section>
+
+    <!-- Car Selection Section with Image and Dropdown -->
+    <section class="car-selection-section">
+      <div class="car-selection-container">
+        <div class="card" style="padding: 40px;">
+          <h3 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">🚗 Select Your Car</h3>
+          
+          <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+            <!-- Car Image Box -->
+            <div style="flex: 1; min-width: 300px;">
+              <div class="car-image-container" id="car-image-container" style="width: 100%; height: 350px; background: var(--bg); border: 2px solid var(--border); border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                <img id="car-preview-image" src="" alt="Car Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                <div id="car-placeholder" class="car-placeholder" style="text-align: center; color: var(--muted);">
+                  <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.3;">
+                    <path d="M5 17h14v-5l-1.5-4.5h-11L5 12v5z"/>
+                    <circle cx="7.5" cy="17.5" r="1.5"/>
+                    <circle cx="16.5" cy="17.5" r="1.5"/>
+                    <path d="M12 8V5"/>
+                  </svg>
+                  <p style="margin-top: 20px; font-size: 1.1rem;">Select a car to see preview</p>
+                </div>
+              </div>
+              
+              <!-- Car Name Below Image -->
+              <div class="car-info" style="margin-top: 20px; text-align: center;">
+                <h3 id="car-name-display" style="color: var(--accent); font-size: 1.8rem; margin-bottom: 10px;">Select Your Car</h3>
+                <p id="car-category-display" class="meta" style="font-size: 1.1rem; color: var(--text);">Choose from our luxury collection</p>
+              </div>
+            </div>
+            
+            <!-- Dropdown Menu Box -->
+            <div style="flex: 1; min-width: 300px;">
+              <div style="background: var(--bg); border: 2px solid var(--border); border-radius: 12px; padding: 30px; height: 350px; display: flex; flex-direction: column; justify-content: center;">
+                <label for="car-selector" style="display: block; margin-bottom: 15px; color: var(--text); font-size: 1.2rem; font-weight: 600;">Choose a car to customize</label>
+                <select id="car-selector" class="car-selector" style="width: 100%; padding: 15px; font-size: 1.1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); cursor: pointer; transition: all 0.3s ease;">
+                  <option value="">-- Select a Car --</option>
+                </select>
+                
+                <!-- Car Details -->
+                <div id="car-details" style="margin-top: 25px; padding-top: 25px; border-top: 1px solid var(--border); display: none;">
+                  <div style="margin-bottom: 15px;">
+                    <span style="color: var(--muted); font-size: 0.9rem;">Base Price:</span>
+                    <p id="car-price-display" style="color: var(--accent); font-size: 1.5rem; font-weight: 700; margin: 5px 0;">$0</p>
+                  </div>
+                  <div>
+                    <span style="color: var(--muted); font-size: 0.9rem;">Category:</span>
+                    <p id="car-category-detail" style="color: var(--text); font-size: 1.1rem; margin: 5px 0;">-</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Customization Sections -->
+    <div class="customization-container">
+      
+      <!-- 1. Exterior Customization -->
+      <section class="customization-section">
+        <h2 class="section-title">🎨 Exterior Customization</h2>
+        <div class="customization-grid">
+          
+          <div class="card">
+            <h3>Full Body Paint/Wrap</h3>
+            <div class="field">
+              <label>Paint Type</label>
+              <select id="body-paint">
+                <option value="">Select Paint Type</option>
+                <option value="metallic">Metallic Paint</option>
+                <option value="matte">Matte Finish</option>
+                <option value="gloss">High Gloss</option>
+                <option value="pearl">Pearl Effect</option>
+                <option value="chrome">Chrome Wrap</option>
+                <option value="carbon">Carbon Fiber Wrap</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Custom License Plate Frames</h3>
+            <div class="field">
+              <label>Frame Style</label>
+              <select id="license-frame">
+                <option value="">Select Frame Style</option>
+                <option value="carbon-fiber">Carbon Fiber Frame</option>
+                <option value="chrome">Chrome Finish</option>
+                <option value="black-matte">Black Matte</option>
+                <option value="gold">Gold Plated</option>
+                <option value="led-illuminated">LED Illuminated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Carbon Fiber Parts</h3>
+            <div class="field">
+              <label>Carbon Components</label>
+              <select id="carbon-parts">
+                <option value="">Select Carbon Parts</option>
+                <option value="hood">Carbon Fiber Hood</option>
+                <option value="mirrors">Side Mirror Caps</option>
+                <option value="spoiler">Rear Spoiler</option>
+                <option value="front-lip">Front Lip Spoiler</option>
+                <option value="side-skirts">Side Skirts</option>
+                <option value="full-kit">Complete Aero Kit</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Custom Roof Racks</h3>
+            <div class="field">
+              <label>Roof Rack Type</label>
+              <select id="roof-racks">
+                <option value="">Select Roof Rack</option>
+                <option value="sport">Sport Roof Rack</option>
+                <option value="cargo">Cargo Basket</option>
+                <option value="bike">Bike Carrier</option>
+                <option value="ski">Ski/Snowboard Rack</option>
+                <option value="kayak">Kayak Carrier</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Sunroof Installation</h3>
+            <div class="field">
+              <label>Sunroof Type</label>
+              <select id="sunroof">
+                <option value="">Select Sunroof</option>
+                <option value="panoramic">Panoramic Sunroof</option>
+                <option value="tilt-slide">Tilt & Slide</option>
+                <option value="pop-up">Pop-up Sunroof</option>
+                <option value="t-top">T-Top Removable</option>
+                <option value="convertible">Full Convertible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Wide-body Conversion Kits</h3>
+            <div class="field">
+              <label>Wide-body Style</label>
+              <select id="widebody">
+                <option value="">Select Wide-body Kit</option>
+                <option value="liberty-walk">Liberty Walk Style</option>
+                <option value="rocket-bunny">Rocket Bunny Kit</option>
+                <option value="pandem">Pandem Wide-body</option>
+                <option value="custom">Custom Fabricated</option>
+                <option value="bolt-on">Bolt-on Flares</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Diffusers</h3>
+            <div class="field">
+              <label>Rear Diffuser</label>
+              <select id="diffusers">
+                <option value="">Select Diffuser</option>
+                <option value="carbon-aggressive">Carbon Aggressive</option>
+                <option value="subtle-oem">Subtle OEM Style</option>
+                <option value="race-spec">Race Spec</option>
+                <option value="led-integrated">LED Integrated</option>
+                <option value="dual-exit">Dual Exit Design</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Fender Flares</h3>
+            <div class="field">
+              <label>Flare Style</label>
+              <select id="fender-flares">
+                <option value="">Select Fender Flares</option>
+                <option value="bolt-on">Bolt-on Flares</option>
+                <option value="molded">Molded Integration</option>
+                <option value="carbon-fiber">Carbon Fiber</option>
+                <option value="wide-arch">Wide Arch Style</option>
+                <option value="rally-spec">Rally Specification</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 2. Interior Customization -->
+      <section class="customization-section">
+        <h2 class="section-title">🪑 Interior Customization</h2>
+        <div class="customization-grid">
+          
+          <div class="card">
+            <h3>Custom Seat Covers</h3>
+            <div class="field">
+              <label>Seat Material</label>
+              <select id="seat-covers">
+                <option value="">Select Seat Material</option>
+                <option value="premium-leather">Premium Leather</option>
+                <option value="alcantara">Alcantara Suede</option>
+                <option value="carbon-fiber">Carbon Fiber Inserts</option>
+                <option value="nappa-leather">Nappa Leather</option>
+                <option value="racing-fabric">Racing Fabric</option>
+                <option value="custom-embroidery">Custom Embroidery</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Pedal Upgrades</h3>
+            <div class="field">
+              <label>Pedal Set</label>
+              <select id="pedal-upgrades">
+                <option value="">Select Pedal Set</option>
+                <option value="aluminum-sport">Aluminum Sport</option>
+                <option value="carbon-fiber">Carbon Fiber</option>
+                <option value="racing-style">Racing Style</option>
+                <option value="led-illuminated">LED Illuminated</option>
+                <option value="custom-engraved">Custom Engraved</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Ambient Lighting</h3>
+            <div class="field">
+              <label>LED Lighting</label>
+              <select id="ambient-lighting">
+                <option value="">Select Lighting</option>
+                <option value="rgb-color-changing">RGB Color Changing</option>
+                <option value="warm-white">Warm White</option>
+                <option value="cool-blue">Cool Blue</option>
+                <option value="multi-zone">Multi-Zone Control</option>
+                <option value="music-sync">Music Synchronized</option>
+                <option value="app-controlled">App Controlled</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Door Panel Customization</h3>
+            <div class="field">
+              <label>Door Panel Style</label>
+              <select id="door-panels">
+                <option value="">Select Door Panel</option>
+                <option value="carbon-fiber">Carbon Fiber Trim</option>
+                <option value="wood-grain">Wood Grain Finish</option>
+                <option value="aluminum-brushed">Brushed Aluminum</option>
+                <option value="leather-wrapped">Leather Wrapped</option>
+                <option value="custom-stitching">Custom Stitching</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Carpet and Floor Mats</h3>
+            <div class="field">
+              <label>Floor Mat Type</label>
+              <select id="floor-mats">
+                <option value="">Select Floor Mats</option>
+                <option value="luxury-carpet">Luxury Carpet</option>
+                <option value="all-weather">All-Weather Rubber</option>
+                <option value="custom-logo">Custom Logo Mats</option>
+                <option value="carbon-look">Carbon Fiber Look</option>
+                <option value="diamond-plate">Diamond Plate</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Roof Liner Color Change</h3>
+            <div class="field">
+              <label>Roof Liner</label>
+              <select id="roof-liner">
+                <option value="">Select Roof Liner</option>
+                <option value="black-suede">Black Suede</option>
+                <option value="starlight">Starlight Headliner</option>
+                <option value="custom-color">Custom Color</option>
+                <option value="alcantara">Alcantara Finish</option>
+                <option value="carbon-pattern">Carbon Pattern</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Racing Seats</h3>
+            <div class="field">
+              <label>Racing Seat Type</label>
+              <select id="racing-seats">
+                <option value="">Select Racing Seats</option>
+                <option value="bucket-seats">Bucket Racing Seats</option>
+                <option value="recaro-sport">Recaro Sport Seats</option>
+                <option value="sparco-racing">Sparco Racing</option>
+                <option value="bride-seats">Bride Racing Seats</option>
+                <option value="custom-fabricated">Custom Fabricated</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Sound System</h3>
+            <div class="field">
+              <label>Audio System</label>
+              <select id="sound-system">
+                <option value="">Select Sound System</option>
+                <option value="premium-speakers">Premium Speakers</option>
+                <option value="subwoofer-system">Subwoofer System</option>
+                <option value="amplifier-upgrade">Amplifier Upgrade</option>
+                <option value="full-audio-kit">Complete Audio Kit</option>
+                <option value="competition-grade">Competition Grade</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3. Performance Customization -->
+      <section class="customization-section">
+        <h2 class="section-title">⚡ Performance Customization</h2>
+        <div class="customization-grid">
+          
+          <div class="card">
+            <h3>Engine Options</h3>
+            <div class="field">
+              <label>Engine Upgrade</label>
+              <select id="engine-options">
+                <option value="">Select Engine</option>
+                <option value="turbo-upgrade">Turbocharger Upgrade</option>
+                <option value="supercharger">Supercharger Kit</option>
+                <option value="engine-swap">Complete Engine Swap</option>
+                <option value="hybrid-conversion">Hybrid Conversion</option>
+                <option value="electric-motor">Electric Motor</option>
+                <option value="performance-tune">Performance Tune</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Lightweight Flywheel</h3>
+            <div class="field">
+              <label>Flywheel Type</label>
+              <select id="flywheel">
+                <option value="">Select Flywheel</option>
+                <option value="aluminum">Aluminum Lightweight</option>
+                <option value="carbon-fiber">Carbon Fiber</option>
+                <option value="chromoly">Chromoly Steel</option>
+                <option value="single-mass">Single Mass</option>
+                <option value="dual-mass">Dual Mass</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Performance Brakes</h3>
+            <div class="field">
+              <label>Brake System</label>
+              <select id="performance-brakes">
+                <option value="">Select Brake System</option>
+                <option value="brembo-kit">Brembo Big Brake Kit</option>
+                <option value="ap-racing">AP Racing System</option>
+                <option value="stoptech">StopTech Performance</option>
+                <option value="wilwood">Wilwood Racing</option>
+                <option value="akebono">Akebono Sport</option>
+                <option value="custom-caliper">Custom Caliper Color</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Upgraded Injectors</h3>
+            <div class="field">
+              <label>Fuel Injectors</label>
+              <select id="injectors">
+                <option value="">Select Injectors</option>
+                <option value="high-flow">High Flow Injectors</option>
+                <option value="racing-spec">Racing Specification</option>
+                <option value="e85-compatible">E85 Compatible</option>
+                <option value="direct-injection">Direct Injection</option>
+                <option value="port-injection">Port Injection</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Nitrous Oxide System</h3>
+            <div class="field">
+              <label>NOS System</label>
+              <select id="nitrous">
+                <option value="">Select NOS System</option>
+                <option value="wet-kit">Wet Nitrous Kit</option>
+                <option value="dry-kit">Dry Nitrous Kit</option>
+                <option value="direct-port">Direct Port System</option>
+                <option value="progressive">Progressive Controller</option>
+                <option value="purge-kit">Purge Kit Included</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4. Wheels, Tires & Brakes -->
+      <section class="customization-section">
+        <h2 class="section-title">🛞 Wheels, Tires & Brakes</h2>
+        <div class="customization-grid">
+          
+          <div class="card">
+            <h3>Alloy/Forged Rims</h3>
+            <div class="field">
+              <label>Wheel Type</label>
+              <select id="rims">
+                <option value="">Select Wheels</option>
+                <option value="forged-lightweight">Forged Lightweight</option>
+                <option value="carbon-fiber">Carbon Fiber Wheels</option>
+                <option value="multi-spoke">Multi-Spoke Design</option>
+                <option value="deep-dish">Deep Dish Style</option>
+                <option value="split-spoke">Split Spoke</option>
+                <option value="custom-machined">Custom Machined</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Custom Rim Color/Finish</h3>
+            <div class="field">
+              <label>Wheel Finish</label>
+              <select id="rim-finish">
+                <option value="">Select Finish</option>
+                <option value="gloss-black">Gloss Black</option>
+                <option value="matte-black">Matte Black</option>
+                <option value="bronze">Bronze Finish</option>
+                <option value="chrome">Chrome Plated</option>
+                <option value="gunmetal">Gunmetal Gray</option>
+                <option value="custom-color">Custom Color</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Performance Tires</h3>
+            <div class="field">
+              <label>Tire Type</label>
+              <select id="tires">
+                <option value="">Select Tires</option>
+                <option value="low-profile">Low Profile Performance</option>
+                <option value="track-tires">Track Day Tires</option>
+                <option value="all-season">High Performance All-Season</option>
+                <option value="drag-radials">Drag Radials</option>
+                <option value="off-road">Off-Road Tires</option>
+                <option value="winter-performance">Winter Performance</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Colored Brake Calipers</h3>
+            <div class="field">
+              <label>Caliper Color</label>
+              <select id="brake-calipers">
+                <option value="">Select Caliper Color</option>
+                <option value="red">Racing Red</option>
+                <option value="yellow">Bright Yellow</option>
+                <option value="blue">Electric Blue</option>
+                <option value="green">Lime Green</option>
+                <option value="orange">Orange</option>
+                <option value="custom">Custom Color</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Brake Rotors</h3>
+            <div class="field">
+              <label>Rotor Type</label>
+              <select id="brake-rotors">
+                <option value="">Select Rotors</option>
+                <option value="slotted">Slotted Rotors</option>
+                <option value="drilled">Drilled Rotors</option>
+                <option value="slotted-drilled">Slotted & Drilled</option>
+                <option value="carbon-ceramic">Carbon Ceramic</option>
+                <option value="floating">Floating Rotors</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 5. Lighting Customization -->
+      <section class="customization-section">
+        <h2 class="section-title">💡 Lighting Customization</h2>
+        <div class="customization-grid">
+          
+          <div class="card">
+            <h3>HID/LED Headlights</h3>
+            <div class="field">
+              <label>Headlight Type</label>
+              <select id="headlights">
+                <option value="">Select Headlights</option>
+                <option value="led-projector">LED Projector</option>
+                <option value="hid-xenon">HID Xenon</option>
+                <option value="adaptive-led">Adaptive LED</option>
+                <option value="laser-headlights">Laser Headlights</option>
+                <option value="angel-eyes">Angel Eye DRL</option>
+                <option value="sequential">Sequential Turn Signals</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Fog Lights</h3>
+            <div class="field">
+              <label>Fog Light Style</label>
+              <select id="fog-lights">
+                <option value="">Select Fog Lights</option>
+                <option value="led-fog">LED Fog Lights</option>
+                <option value="halo-fog">Halo Ring Fog</option>
+                <option value="projector-fog">Projector Style</option>
+                <option value="color-changing">Color Changing</option>
+                <option value="off-road">Off-Road LED Bar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>DRLs (Daytime Running Lights)</h3>
+            <div class="field">
+              <label>DRL Style</label>
+              <select id="drls">
+                <option value="">Select DRLs</option>
+                <option value="led-strip">LED Strip DRL</option>
+                <option value="c-shape">C-Shape Design</option>
+                <option value="sequential-drl">Sequential DRL</option>
+                <option value="integrated">Integrated Headlight</option>
+                <option value="custom-shape">Custom Shape</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Tail Light Customization</h3>
+            <div class="field">
+              <label>Tail Light Style</label>
+              <select id="tail-lights">
+                <option value="">Select Tail Lights</option>
+                <option value="led-sequential">LED Sequential</option>
+                <option value="smoked-lens">Smoked Lens</option>
+                <option value="clear-lens">Clear Lens</option>
+                <option value="fiber-optic">Fiber Optic</option>
+                <option value="custom-design">Custom Design</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Underbody Glow Kits</h3>
+            <div class="field">
+              <label>Underglow Style</label>
+              <select id="underglow">
+                <option value="">Select Underglow</option>
+                <option value="rgb-strips">RGB LED Strips</option>
+                <option value="neon-tubes">Neon Tubes</option>
+                <option value="app-controlled">App Controlled</option>
+                <option value="music-sync">Music Synchronized</option>
+                <option value="chase-effect">Chase Effect</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 6. Tech & Electronics -->
+      <section class="customization-section">
+        <h2 class="section-title">📱 Tech & Electronics</h2>
+        <div class="customization-grid">
+          
+          <div class="card">
+            <h3>GPS Navigation System</h3>
+            <div class="field">
+              <label>Navigation Type</label>
+              <select id="gps-navigation">
+                <option value="">Select Navigation</option>
+                <option value="android-auto">Android Auto</option>
+                <option value="apple-carplay">Apple CarPlay</option>
+                <option value="built-in-gps">Built-in GPS</option>
+                <option value="heads-up-display">HUD Navigation</option>
+                <option value="voice-control">Voice Controlled</option>
+                <option value="offline-maps">Offline Maps</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Reverse/360° Cameras</h3>
+            <div class="field">
+              <label>Camera System</label>
+              <select id="cameras">
+                <option value="">Select Camera System</option>
+                <option value="reverse-camera">Reverse Camera</option>
+                <option value="360-view">360° Surround View</option>
+                <option value="blind-spot">Blind Spot Cameras</option>
+                <option value="dash-cam">Front Dash Cam</option>
+                <option value="interior-cam">Interior Camera</option>
+                <option value="night-vision">Night Vision</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Parking Sensors</h3>
+            <div class="field">
+              <label>Sensor Type</label>
+              <select id="parking-sensors">
+                <option value="">Select Sensors</option>
+                <option value="ultrasonic">Ultrasonic Sensors</option>
+                <option value="electromagnetic">Electromagnetic</option>
+                <option value="front-rear">Front & Rear</option>
+                <option value="side-sensors">Side Sensors</option>
+                <option value="visual-display">Visual Display</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Remote Start System</h3>
+            <div class="field">
+              <label>Remote Start</label>
+              <select id="remote-start">
+                <option value="">Select Remote Start</option>
+                <option value="key-fob">Key Fob Remote</option>
+                <option value="smartphone-app">Smartphone App</option>
+                <option value="long-range">Long Range Remote</option>
+                <option value="auto-start">Auto Start Timer</option>
+                <option value="climate-control">Climate Pre-conditioning</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Digital Instrument Cluster</h3>
+            <div class="field">
+              <label>Cluster Type</label>
+              <select id="digital-cluster">
+                <option value="">Select Cluster</option>
+                <option value="full-digital">Full Digital Display</option>
+                <option value="hybrid-analog">Hybrid Analog/Digital</option>
+                <option value="customizable">Customizable Themes</option>
+                <option value="racing-display">Racing Display</option>
+                <option value="hud-projection">HUD Projection</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>HUD (Heads-Up Display)</h3>
+            <div class="field">
+              <label>HUD System</label>
+              <select id="hud-display">
+                <option value="">Select HUD</option>
+                <option value="windshield-hud">Windshield HUD</option>
+                <option value="combiner-hud">Combiner HUD</option>
+                <option value="ar-hud">Augmented Reality</option>
+                <option value="speed-display">Speed Display</option>
+                <option value="navigation-hud">Navigation HUD</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Summary and Actions -->
+      <section class="customization-section">
+        <h2 class="section-title">💰 Summary & Actions</h2>
+        <div class="summary-container">
+          <div class="card summary-card">
+            <h3>Customization Summary</h3>
+            <div id="customization-summary">
+              <p>Select customization options to see your build summary here.</p>
+            </div>
+            <div class="total-price">
+              <h4>Total Price: $<span id="total-price">0</span></h4>
+            </div>
+          </div>
+          
+          <div class="card actions-card">
+            <h3>Actions</h3>
+            <div class="actions">
+              <button class="btn" id="save-configuration">💾 Save Configuration</button>
+              <button class="btn" id="save-fav">❤️ Save to Favorites</button>
+              <button class="btn" id="reset-all">🔄 Reset All</button>
+              <a class="btn ghost" id="go-checkout" href="/checkout">🛒 Proceed to Checkout</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 MARQUE DESIGN. All rights reserved. | 
+        <a href="/privacy-policy" style="color: var(--accent);">Privacy Policy</a> | 
+        <a href="/terms-of-service" style="color: var(--accent);">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/car-selector.js"></script>
+  <script src="/js/customize.js"></script>
+  <script src="/js/preloader.js"></script>
+</body>
+</html>
+
+
+

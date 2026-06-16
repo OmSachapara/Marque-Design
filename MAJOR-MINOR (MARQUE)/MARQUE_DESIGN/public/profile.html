@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - MARQUE DESIGN</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <a href="/" class="logo">MARQUE <span>DESIGN</span></a>
+
+            <nav id="nav-menu">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/cars">Cars</a>
+                <a href="/customize">Customize</a>
+                <a href="/favorites">Favorites</a>
+                <a href="/checkout">Checkout</a>
+                <a href="/profile" class="active">Profile</a>
+                <a href="/login" id="auth-link">Sign In</a>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Profile Container - Matching main website -->
+    <main class="container">
+        <!-- Profile Hero Section -->
+        <section class="profile-hero">
+            <div class="profile-hero-content">
+                <h1>Your Profile</h1>
+                <p>Manage your account, preferences, and luxury car customization experience</p>
+            </div>
+        </section>
+
+        <!-- Authentication Forms (shown when not logged in) -->
+        <div class="auth-container" id="auth-container">
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Sign In</button>
+                <button class="auth-tab" data-tab="register">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form" id="login-form">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your MARQUE DESIGN account</p>
+
+                <form id="login-form-element">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="login-password" name="password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('login-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="auth-btn primary">Sign In</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <div class="social-auth">
+                    <button class="social-btn google-btn" id="google-signin">
+                        <i class="fab fa-google"></i>
+                        Sign in with Google
+                        <small class="popup-indicator">Opens in popup</small>
+                    </button>
+                    <button class="social-btn apple-btn" id="apple-signin">
+                        <i class="fab fa-apple"></i>
+                        Sign in with Apple
+                        <small class="popup-indicator">Coming soon</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="auth-form hidden" id="register-form">
+                <h2>Create Account</h2>
+                <p>Join MARQUE DESIGN for exclusive car customization</p>
+
+                <form id="register-form-element">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-firstname">First Name</label>
+                            <input type="text" id="register-firstname" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-lastname">Last Name</label>
+                            <input type="text" id="register-lastname" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-email">Email Address</label>
+                        <input type="email" id="register-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-phone">Phone Number (Optional)</label>
+                        <input type="tel" id="register-phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="register-password" name="password" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword('register-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="password-strength"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <div class="password-input">
+                            <input type="password" id="register-confirm-password" name="confirmPassword" required>
+                            <button type="button" class="password-toggle"
+                                onclick="togglePassword('register-confirm-password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="/terms-of-service" target="_blank" class="link">Terms of Service</a>
+                            and <a href="/privacy-policy" target="_blank" class="link">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" checked>
+                            <span class="checkmark"></span>
+                            Subscribe to newsletter for updates and offers
+                        </label>
+                    </div>
+
+                    <button type="submit" class="auth-btn primary">Create Account</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <div class="social-auth">
+                    <button class="social-btn google-btn" id="google-signup">
+                        <i class="fab fa-google"></i>
+                        Sign up with Google
+                        <small class="popup-indicator">Opens in popup</small>
+                    </button>
+                    <button class="social-btn apple-btn" id="apple-signup">
+                        <i class="fab fa-apple"></i>
+                        Sign up with Apple
+                        <small class="popup-indicator">Coming soon</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Dashboard (shown when logged in) -->
+        <div class="profile-dashboard hidden" id="profile-dashboard">
+            <div class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img id="profile-image" src="images/default-avatar.svg" alt="Profile">
+                        <button class="avatar-edit" id="avatar-edit">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <h3 id="profile-name">User Name</h3>
+                    <p id="profile-email">user@email.com</p>
+                </div>
+
+                <nav class="profile-nav">
+                    <div class="nav-group-title" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin: 15px 0 5px 15px; font-weight: bold;">Dashboard</div>
+                    <a href="#" class="profile-nav-item active" data-section="overview">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Overview
+                    </a>
+                    
+                    <div class="nav-group-title" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin: 20px 0 5px 15px; font-weight: bold;">My Activity</div>
+                    <a href="#" class="profile-nav-item" data-section="orders">
+                        <i class="fas fa-shopping-bag"></i>
+                        Orders
+                    </a>
+                    <a href="#" class="profile-nav-item" data-section="favorites">
+                        <i class="fas fa-heart"></i>
+                        Favorites
+                    </a>
+
+                    <div class="nav-group-title" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin: 20px 0 5px 15px; font-weight: bold;">Account Settings</div>
+                    <a href="#" class="profile-nav-item" data-section="personal">
+                        <i class="fas fa-user"></i>
+                        Personal Info
+                    </a>
+                    <a href="#" class="profile-nav-item" data-section="preferences">
+                        <i class="fas fa-cog"></i>
+                        Preferences
+                    </a>
+                    <a href="#" class="profile-nav-item" data-section="security">
+                        <i class="fas fa-shield-alt"></i>
+                        Security
+                    </a>
+                    <a href="#" class="profile-nav-item" data-section="privacy">
+                        <i class="fas fa-user-shield"></i>
+                        Privacy & Data
+                    </a>
+                </nav>
+            </div>
+
+            <div class="profile-content">
+                <!-- Overview Section -->
+                <div class="profile-section active" id="overview-section">
+                    <h2 class="section-title">Account Overview</h2>
+                    <div class="overview-cards">
+                        <div class="overview-card">
+                            <div class="card-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="card-info">
+                                <h4>Total Orders</h4>
+                                <span class="card-value" id="total-orders">0</span>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="card-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="card-info">
+                                <h4>Favorites</h4>
+                                <span class="card-value" id="total-favorites">0</span>
+                            </div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="card-info">
+                                <h4>Member Since</h4>
+                                <span class="card-value" id="member-since">2024</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list" id="activity-list">
+                            <p class="no-activity">No recent activity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Info Section -->
+                <div class="profile-section" id="personal-section">
+                    <h2 class="section-title">Personal Information</h2>
+                    <form id="personal-info-form" class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-firstname">First Name</label>
+                                <input type="text" id="edit-firstname" name="firstName">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-lastname">Last Name</label>
+                                <input type="text" id="edit-lastname" name="lastName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-email">Email Address</label>
+                            <input type="email" id="edit-email" name="email" readonly>
+                            <small>Email cannot be changed. Contact support if needed.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-phone">Phone Number</label>
+                            <input type="tel" id="edit-phone" name="phone">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-dob">Date of Birth</label>
+                                <input type="date" id="edit-dob" name="dateOfBirth">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-gender">Gender</label>
+                                <select id="edit-gender" name="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3>Address</h3>
+                        <div class="form-group">
+                            <label for="edit-street">Street Address</label>
+                            <input type="text" id="edit-street" name="address.street">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-city">City</label>
+                                <input type="text" id="edit-city" name="address.city">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-state">State</label>
+                                <input type="text" id="edit-state" name="address.state">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-zip">ZIP Code</label>
+                                <input type="text" id="edit-zip" name="address.zipCode">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-country">Country</label>
+                                <input type="text" id="edit-country" name="address.country">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-btn primary">Save Changes</button>
+                    </form>
+                </div>
+
+                <!-- Security Section -->
+                <div class="profile-section" id="security-section">
+                    <h2 class="section-title">Security Settings</h2>
+
+                    <div class="security-item">
+                        <h3>Change Password</h3>
+                        <form id="change-password-form" class="profile-form">
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" name="currentPassword" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" name="newPassword" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm-new-password">Confirm New Password</label>
+                                <input type="password" id="confirm-new-password" name="confirmNewPassword" required>
+                            </div>
+
+                            <button type="submit" class="auth-btn primary">Change Password</button>
+                        </form>
+                    </div>
+
+                    <div class="security-item">
+                        <h3>Connected Accounts</h3>
+                        <div class="connected-accounts">
+                            <div class="account-item">
+                                <i class="fab fa-google"></i>
+                                <span>Google Account</span>
+                                <button class="btn-link" id="google-connect">Connect</button>
+                            </div>
+                            <div class="account-item">
+                                <i class="fab fa-apple"></i>
+                                <span>Apple ID</span>
+                                <button class="btn-link" id="apple-connect">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="security-item danger-zone">
+                        <h3>Danger Zone</h3>
+                        <p>Once you delete your account, there is no going back. Please be certain.</p>
+                        <button class="auth-btn danger" id="delete-account-btn">Delete Account</button>
+                    </div>
+                </div>
+
+                <!-- Preferences Section -->
+                <div class="profile-section" id="preferences-section">
+                    <h2 class="section-title">Preferences</h2>
+                    <form id="preferences-form" class="profile-form">
+                        <div class="preference-group">
+                            <h3>Notifications</h3>
+                            <label class="switch-label">
+                                <input type="checkbox" id="email-notifications" name="preferences.notifications">
+                                <span class="switch"></span>
+                                Email Notifications
+                            </label>
+                            <label class="switch-label">
+                                <input type="checkbox" id="newsletter" name="preferences.newsletter">
+                                <span class="switch"></span>
+                                Newsletter Subscription
+                            </label>
+                        </div>
+
+                        <div class="preference-group">
+                            <h3>Theme</h3>
+                            <div class="theme-options">
+                                <label class="radio-label">
+                                    <input type="radio" name="preferences.theme" value="light">
+                                    <span class="radio"></span>
+                                    Light
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="preferences.theme" value="dark">
+                                    <span class="radio"></span>
+                                    Dark
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="preferences.theme" value="auto">
+                                    <span class="radio"></span>
+                                    Auto
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-btn primary">Save Preferences</button>
+                    </form>
+                </div>
+
+                <!-- Orders Section -->
+                <div class="profile-section" id="orders-section">
+                    <h2 class="section-title">Order History</h2>
+                    <div class="orders-list" id="orders-list">
+                        <p class="no-orders">No orders found</p>
+                    </div>
+                </div>
+
+                <!-- Favorites Section -->
+                <div class="profile-section" id="favorites-section">
+                    <h2 class="section-title">Favorite Cars</h2>
+                    <div class="favorites-grid" id="favorites-grid">
+                        <p class="no-favorites">No favorites added yet</p>
+                    </div>
+                </div>
+
+                <!-- Privacy & Data Section -->
+                <div class="profile-section" id="privacy-section">
+                    <h2 class="section-title">Privacy & Data Management</h2>
+
+                    <div class="security-item">
+                        <h3>Data Privacy Controls</h3>
+                        <p>Manage how your personal information is used and shared.</p>
+
+                        <div class="preference-group">
+                            <label class="switch-label">
+                                <input type="checkbox" id="data-analytics" name="privacy.analytics" checked>
+                                <span class="switch"></span>
+                                Allow usage analytics to improve our services
+                            </label>
+                            <label class="switch-label">
+                                <input type="checkbox" id="marketing-emails" name="privacy.marketing" checked>
+                                <span class="switch"></span>
+                                Receive marketing emails and promotional offers
+                            </label>
+                            <label class="switch-label">
+                                <input type="checkbox" id="third-party-sharing" name="privacy.sharing">
+                                <span class="switch"></span>
+                                Allow sharing data with trusted partners
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="security-item">
+                        <h3>Data Export & Deletion</h3>
+                        <p>You have the right to access, export, or delete your personal data.</p>
+                        <div class="actions" style="gap: 1rem; margin-top: 1rem;">
+                            <button class="auth-btn secondary" id="export-data-btn">
+                                <i class="fas fa-download"></i> Export My Data
+                            </button>
+                            <button class="auth-btn secondary" id="delete-data-btn">
+                                <i class="fas fa-trash"></i> Request Data Deletion
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="security-item">
+                        <h3>Privacy Policy & Terms</h3>
+                        <p>Review our privacy practices and terms of service.</p>
+                        <div class="actions" style="gap: 1rem; margin-top: 1rem;">
+                            <a href="/privacy-policy" target="_blank" class="auth-btn secondary">
+                                <i class="fas fa-shield-alt"></i> View Privacy Policy
+                            </a>
+                            <a href="/terms-of-service" target="_blank" class="auth-btn secondary">
+                                <i class="fas fa-file-contract"></i> View Terms of Service
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="security-item">
+                        <h3>Contact Privacy Team</h3>
+                        <p>Have questions about your privacy or data? Contact our privacy team.</p>
+                        <div
+                            style="margin-top: 1rem; padding: 1rem; background: rgba(120,93,50,.1); border-radius: 10px; border: 1px solid rgba(120,93,50,.3);">
+                            <p><strong>Privacy Team Contact:</strong></p>
+                            <p>Email: <a href="mailto:marquedesign001@gmail.com"
+                                    style="color: var(--accent);">marquedesign001@gmail.com</a></p>
+                            <p>Phone: +91 6353808435</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer - Matching main website -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MARQUE DESIGN. All rights reserved. |
+                <a href="/privacy-policy" style="color: var(--accent);">Privacy Policy</a> |
+                <a href="/terms-of-service" style="color: var(--accent);">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Delete Account Modal -->
+    <div class="modal" id="delete-account-modal">
+        <div class="modal-content">
+            <h3>Delete Account</h3>
+            <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+            <form id="delete-account-form">
+                <div class="form-group">
+                    <label for="delete-password">Enter your password to confirm</label>
+                    <input type="password" id="delete-password" name="password" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="auth-btn secondary" id="cancel-delete">Cancel</button>
+                    <button type="submit" class="auth-btn danger">Delete Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Emergency fix script - loads FIRST -->
+    <script src="/js/navbar.js"></script>
+    <script src="/js/profile-fix.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/preloader.js"></script>
+</body>
+
+</html>

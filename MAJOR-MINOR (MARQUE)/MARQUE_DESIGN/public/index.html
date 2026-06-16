@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARQUE DESIGN - Home</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/preloader.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a href="/" class="logo">MARQUE <span>DESIGN</span></a>
+      
+      <nav id="nav-menu">
+        <a href="/" class="active">Home</a>
+        <a href="/about">About</a>
+        <a href="/cars">Cars</a>
+        <a href="/customize">Customize</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/checkout">Checkout</a>
+        <a href="/profile">Profile</a>
+        <a href="/login" id="auth-link">Sign In</a>
+      </nav>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Slideshow Section -->
+  <section class="hero-slideshow">
+    <div class="slideshow-container">
+      <div class="slide active">
+        <img src="/images/2026-Bugatti-Tourbillon-001-2160.jpg" alt="Bugatti Tourbillon">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h2>Bugatti Tourbillon</h2>
+          <p>Ultimate Hypercar Performance</p>
+          <a href="/cars" class="slide-btn">Explore Now</a>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/images/2024-Bentley-Bentayga-S-Black-Edition-001-2160.jpg" alt="Bentley Bentayga S">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h2>Bentley Bentayga S</h2>
+          <p>Luxury Performance SUV</p>
+          <a href="/cars" class="slide-btn">Explore Now</a>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/images/2023-BMW-i7-001-2160.jpg" alt="BMW i7">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h2>BMW i7</h2>
+          <p>Electric Luxury Redefined</p>
+          <a href="/cars" class="slide-btn">Explore Now</a>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/images/2022-Dodge-Challenger-SRT-Hellcat-Jailbreak-001-2160.jpg" alt="Dodge Challenger SRT Hellcat">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h2>Dodge Challenger SRT Hellcat</h2>
+          <p>American Muscle Power</p>
+          <a href="/cars" class="slide-btn">Explore Now</a>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/images/2025-Audi-RS-Q8-Performance-004-2160.jpg" alt="Audi RS Q8 Performance">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h2>Audi RS Q8 Performance</h2>
+          <p>High-Performance Luxury SUV</p>
+          <a href="/cars" class="slide-btn">Explore Now</a>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="/images/2023-Cadillac-Escalade-V-005-2160.jpg" alt="Cadillac Escalade V">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <h2>Cadillac Escalade V</h2>
+          <p>American Luxury with V8 Power</p>
+          <a href="/cars" class="slide-btn">Explore Now</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation Arrows -->
+    <button class="slide-nav prev" onclick="changeSlide(-1)">❮</button>
+    <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
+    
+    <!-- Slide Indicators -->
+    <div class="slide-indicators">
+      <span class="indicator active" onclick="currentSlide(0)"></span>
+      <span class="indicator" onclick="currentSlide(1)"></span>
+      <span class="indicator" onclick="currentSlide(2)"></span>
+      <span class="indicator" onclick="currentSlide(3)"></span>
+      <span class="indicator" onclick="currentSlide(4)"></span>
+      <span class="indicator" onclick="currentSlide(5)"></span>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Floating Particles Background -->
+    <div class="particles" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden;">
+      <div style="position: absolute; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; top: 20%; left: 10%; animation: particleFloat 15s infinite;"></div>
+      <div style="position: absolute; width: 3px; height: 3px; background: var(--accent); border-radius: 50%; top: 60%; left: 80%; animation: particleFloat 12s infinite 2s;"></div>
+      <div style="position: absolute; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; top: 40%; left: 50%; animation: particleFloat 18s infinite 4s;"></div>
+      <div style="position: absolute; width: 3px; height: 3px; background: var(--accent); border-radius: 50%; top: 80%; left: 30%; animation: particleFloat 14s infinite 6s;"></div>
+      <div style="position: absolute; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; top: 30%; left: 70%; animation: particleFloat 16s infinite 3s;"></div>
+    </div>
+
+    <section class="section" style="position: relative; z-index: 1;">
+      <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 50px; text-align: center;">Why MARQUE DESIGN?</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;" class="stagger-animation">
+        
+        <div class="card glass" style="padding: 40px; display: flex; flex-direction: column; align-items: flex-start;">
+          <div style="font-size: 3rem; margin-bottom: 20px;">💎</div>
+          <h3 class="gradient-text" style="font-size: 1.6rem; margin-bottom: 15px; font-weight: 700;">Premium Quality Components</h3>
+          <p class="meta" style="font-size: 1.05rem; line-height: 1.7; color: var(--text);">Only carefully selected, performance-tested parts for reliability and long-lasting results.</p>
+        </div>
+
+        <div class="card glass" style="padding: 40px; display: flex; flex-direction: column; align-items: flex-start;">
+          <div style="font-size: 3rem; margin-bottom: 20px;">✨</div>
+          <h3 class="gradient-text" style="font-size: 1.6rem; margin-bottom: 15px; font-weight: 700;">Smooth & Simple Customization</h3>
+          <p class="meta" style="font-size: 1.05rem; line-height: 1.7; color: var(--text);">A seamless design experience that makes personalizing your ride easy and enjoyable.</p>
+        </div>
+
+        <div class="card glass" style="padding: 40px; display: flex; flex-direction: column; align-items: flex-start;">
+          <div style="font-size: 3rem; margin-bottom: 20px;">⚡</div>
+          <h3 class="gradient-text" style="font-size: 1.6rem; margin-bottom: 15px; font-weight: 700;">Performance-Driven Design</h3>
+          <p class="meta" style="font-size: 1.05rem; line-height: 1.7; color: var(--text);">Every product enhances both aesthetics and on-road performance.</p>
+        </div>
+
+        <div class="card glass" style="padding: 40px; display: flex; flex-direction: column; align-items: flex-start;">
+          <div style="font-size: 3rem; margin-bottom: 20px;">🛡️</div>
+          <h3 class="gradient-text" style="font-size: 1.6rem; margin-bottom: 15px; font-weight: 700;">Trusted Transparency</h3>
+          <p class="meta" style="font-size: 1.05rem; line-height: 1.7; color: var(--text);">Honest guidance, clear details, and no hidden compromises—ever.</p>
+        </div>
+
+        <div class="card glass" style="padding: 40px; display: flex; flex-direction: column; align-items: flex-start;">
+          <div style="font-size: 3rem; margin-bottom: 20px;">🤝</div>
+          <h3 class="gradient-text" style="font-size: 1.6rem; margin-bottom: 15px; font-weight: 700;">Expert Support Anytime</h3>
+          <p class="meta" style="font-size: 1.05rem; line-height: 1.7; color: var(--text);">Friendly, knowledgeable help at every step of your customization journey.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section" style="position: relative; z-index: 1; margin: 80px 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
+        <div class="card glass" style="padding: 40px; transition: all 0.3s ease;">
+          <div class="gradient-text" style="font-size: 3.5rem; font-weight: 700; margin-bottom: 10px;" id="stat-cars">10+</div>
+          <p style="color: var(--muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Luxury Cars</p>
+        </div>
+        <div class="card glass" style="padding: 40px; transition: all 0.3s ease;">
+          <div class="gradient-text" style="font-size: 3.5rem; font-weight: 700; margin-bottom: 10px;">500+</div>
+          <p style="color: var(--muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Customizations</p>
+        </div>
+        <div class="card glass" style="padding: 40px; transition: all 0.3s ease;">
+          <div class="gradient-text" style="font-size: 3.5rem; font-weight: 700; margin-bottom: 10px;">1000+</div>
+          <p style="color: var(--muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Happy Clients</p>
+        </div>
+        <div class="card glass" style="padding: 40px; transition: all 0.3s ease;">
+          <div class="gradient-text" style="font-size: 3.5rem; font-weight: 700; margin-bottom: 10px;">24/7</div>
+          <p style="color: var(--muted); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Support</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="position: relative; z-index: 1;">
+      <h2 class="section-title neon-glow" style="font-size: 2.5rem; margin-bottom: 50px; text-align: center;">Featured Car Collection</h2>
+      <div class="grid" id="featured-cars">
+        <!-- Featured cars will be loaded dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 MARQUE DESIGN. All rights reserved. | 
+        <a href="/privacy-policy" style="color: var(--accent);">Privacy Policy</a> | 
+        <a href="/terms-of-service" style="color: var(--accent);">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+  <script src="/js/navbar.js"></script><script src="/js/common.js"></script>
+  <script>
+    // Load featured cars dynamically with slideshows
+    document.addEventListener('DOMContentLoaded', async () => {
+      const featuredCarsGrid = document.getElementById('featured-cars');
+      
+      try {
+        // Render skeletons while loading
+        const skeletonCount = 8;
+        for (let i = 0; i < skeletonCount; i++) {
+          const s = document.createElement('div');
+          s.className = 'card';
+          s.innerHTML = `
+            <div class="skeleton thumb"></div>
+            <div class="skeleton title"></div>
+            <div class="skeleton meta"></div>
+          `;
+          featuredCarsGrid.appendChild(s);
+        }
+
+        const cars = await MNS.api.getCars();
+        
+        // Show first 8 cars as featured
+        const featuredCars = cars.slice(0, 8);
+        
+        // Get all available images for slideshow
+        const allImages = [
+          '1998-Maserati-3200-GT-001-2160.jpg',
+          '2018-Jaguar-F-Type-001-2000.jpg',
+          '2022-Dodge-Challenger-SRT-Hellcat-Jailbreak-001-2160.jpg',
+          '2022-GMC-Hummer-EV-001-2160.jpg',
+          '2023-BMW-i7-001-2160.jpg',
+          '2023-Cadillac-Escalade-V-005-2160.jpg',
+          '2024-Bentley-Bentayga-S-Black-Edition-001-2160.jpg',
+          '2025-Audi-RS-Q8-Performance-001-2160 (1).jpg',
+          '2025-Audi-RS-Q8-Performance-001-2160.jpg',
+          '2025-Skoda-110-R-Concept-001-2160.jpg',
+          '2025-Skoda-110-R-Concept-002-2160.jpg',
+          '2026-Bugatti-Tourbillon-001-2160.jpg'
+        ];
+        
+        // Clear skeletons
+        featuredCarsGrid.innerHTML = '';
+
+        featuredCars.forEach((car, index) => {
+          const card = document.createElement('a');
+          card.className = 'card';
+          card.href = '/cars';
+          
+          // Create slideshow container
+          const slideshowContainer = document.createElement('div');
+          slideshowContainer.className = 'car-slideshow-container';
+          
+          // Create slideshow with multiple images
+          // Each car gets 3-4 random images for variety
+          const carImages = [];
+          const startIndex = index * 3;
+          for (let i = 0; i < 3; i++) {
+            const imageIndex = (startIndex + i) % allImages.length;
+            carImages.push(allImages[imageIndex]);
+          }
+          
+          // Add the car's specific image if it exists
+          if (car.image) {
+            carImages.unshift(car.image);
+          }
+          
+          // Create slideshow
+          const slideshow = new MNS.CarSlideshow(slideshowContainer, car.name, carImages);
+          
+          card.innerHTML = `
+            <h3>${car.name}</h3>
+            <p class="meta">${car.category}</p>
+            <p class="meta">Starting at $${car.base_price.toLocaleString()}</p>
+          `;
+          
+          card.insertBefore(slideshowContainer, card.firstChild);
+          featuredCarsGrid.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Failed to load featured cars:', error);
+        featuredCarsGrid.innerHTML = '<div class="card"><h3>Error loading cars</h3><p class="meta">Please try refreshing the page.</p></div>';
+      }
+    });
+
+    // Simple slideshow rotator for all .slideshow blocks (legacy support)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.slideshow').forEach((ss) => {
+        const slides = Array.from(ss.querySelectorAll('.slide'));
+        if(slides.length < 2) return;
+        let idx = 0;
+        const interval = Number(ss.getAttribute('data-interval') || 2200);
+        setInterval(() => {
+          slides[idx].classList.remove('active');
+          idx = (idx + 1) % slides.length;
+          slides[idx].classList.add('active');
+        }, interval);
+      });
+    });
+
+    // Hero Slideshow Functionality
+    let currentSlideIndex = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+      const slides = document.querySelectorAll('.hero-slideshow .slide');
+      const indicators = document.querySelectorAll('.slide-indicators .indicator');
+      
+      if (index >= slides.length) currentSlideIndex = 0;
+      if (index < 0) currentSlideIndex = slides.length - 1;
+      
+      slides.forEach(slide => slide.classList.remove('active'));
+      indicators.forEach(indicator => indicator.classList.remove('active'));
+      
+      slides[currentSlideIndex].classList.add('active');
+      indicators[currentSlideIndex].classList.add('active');
+    }
+
+    function changeSlide(direction) {
+      currentSlideIndex += direction;
+      showSlide(currentSlideIndex);
+      resetSlideInterval();
+    }
+
+    function currentSlide(index) {
+      currentSlideIndex = index;
+      showSlide(currentSlideIndex);
+      resetSlideInterval();
+    }
+
+    function nextSlide() {
+      currentSlideIndex++;
+      showSlide(currentSlideIndex);
+    }
+
+    function resetSlideInterval() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Auto-play slideshow
+    document.addEventListener('DOMContentLoaded', () => {
+      slideInterval = setInterval(nextSlide, 5000);
+      
+      // Pause on hover
+      const slideshowContainer = document.querySelector('.hero-slideshow');
+      if (slideshowContainer) {
+        slideshowContainer.addEventListener('mouseenter', () => {
+          clearInterval(slideInterval);
+        });
+        
+        slideshowContainer.addEventListener('mouseleave', () => {
+          slideInterval = setInterval(nextSlide, 5000);
+        });
+      }
+
+      // Add ripple effect to buttons
+      document.querySelectorAll('.btn, .slide-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          ripple.classList.add('ripple');
+          this.appendChild(ripple);
+          
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = e.clientX - rect.left - size/2 + 'px';
+          ripple.style.top = e.clientY - rect.top - size/2 + 'px';
+          
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      // Parallax effect on mouse move
+      document.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.card');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        cards.forEach((card, index) => {
+          const speed = (index + 1) * 0.5;
+          const x = (mouseX - 0.5) * speed;
+          const y = (mouseY - 0.5) * speed;
+          card.style.transform = `translate(${x}px, ${y}px)`;
+        });
+      });
+
+      // Animate stats counter
+      const animateCounter = (element, target) => {
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            element.textContent = target + '+';
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(current) + '+';
+          }
+        }, 30);
+      };
+
+      // Intersection Observer for animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'all 0.8s ease-out';
+        observer.observe(section);
+      });
+
+      // Smooth scroll for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Add scroll effect to header
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+      });
+    });
+
+  </script>
+  
+  <!-- Preloader Script -->
+  <script src="/js/preloader.js"></script>
+</body>
+</html>
+
+
+

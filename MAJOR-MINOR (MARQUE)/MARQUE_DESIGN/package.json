@@ -1,0 +1,32 @@
+{
+  "name": "marque-design-website",
+  "version": "1.0.0",
+  "description": "MARQUE DESIGN - Luxury car customization website",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "prod": "NODE_ENV=production node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "npm install && echo \"Setup complete! Copy .env.example to .env and configure your settings.\"",
+    "clean": "rm -rf node_modules package-lock.json && npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.19.3",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.11",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0"
+  }
+}

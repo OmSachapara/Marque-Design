@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARQUE DESIGN - Cars</title>
+  <link rel="stylesheet" href="/css/styles.css">  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/preloader.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a href="/" class="logo">MARQUE <span>DESIGN</span></a>
+      
+      <nav id="nav-menu">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/cars" class="active">Cars</a>
+        <a href="/customize">Customize</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/checkout">Checkout</a>
+        <a href="/profile">Profile</a>
+        <a href="/login" id="auth-link">Sign In</a>
+      </nav>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero lux">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Ask for your perfect build</h1>
+        <p>Describe the car you want, or search our collection to start customizing instantly.</p>
+        <div class="search-wrap">
+          <div class="search">
+            <input id="cars-search" type="text" placeholder="e.g. Luxury electric SUV with gold interior" />
+            <button class="btn" id="cars-search-btn">Search</button>
+          </div>
+        </div>
+        <div class="chips">
+          <span class="chip" data-q="electric sedan">Electric sedan</span>
+          <span class="chip" data-q="V8 grand tourer">V8 grand tourer</span>
+          <span class="chip" data-q="luxury SUV">Luxury SUV</span>
+          <span class="chip" data-q="track ready">Track ready</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <h1>Choose Your Base Model</h1>
+      <p>Select from our premium collection to start customizing.</p>
+    </section>
+    <section class="grid" id="cars-grid">
+      <!-- Cars will be loaded dynamically from database -->
+    </section>
+  </main>
+  <footer>
+    <div class="container">© 2025 MARQUE DESIGN</div>
+  </footer>
+  <script src="/js/navbar.js"></script>  <script src="/js/common.js"></script>
+  <script>
+    // Search interaction
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('cars-search');
+      const btn = document.getElementById('cars-search-btn');
+      const chips = document.querySelectorAll('.chip');
+      
+      function performSearch() {
+        const searchTerm = input ? input.value.toLowerCase() : '';
+        const cards = document.querySelectorAll('#cars-grid .card');
+        
+        cards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          if (searchTerm === '' || text.includes(searchTerm)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        
+        // Scroll to cars grid
+        const carsGrid = document.getElementById('cars-grid');
+        if (carsGrid) {
+          carsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+      
+      if(btn) btn.addEventListener('click', performSearch);
+      if(input) {
+        input.addEventListener('keydown', e => { 
+          if(e.key === 'Enter') performSearch(); 
+        });
+      }
+      
+      chips.forEach(c => c.addEventListener('click', () => { 
+        if(input) { 
+          input.value = c.dataset.q; 
+          performSearch();
+        }
+      }));
+    });
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const carsGrid = document.getElementById('cars-grid');
+      
+      try {
+        const cars = await MNS.api.getCars();
+        
+        cars.forEach(car => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          
+          // Create image element with fallback
+          const imageDiv = document.createElement('div');
+          imageDiv.className = 'car-image';
+          imageDiv.style.cssText = 'width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: bold;';
+          
+          if (car.image) {
+            const img = document.createElement('img');
+            img.src = `/images/${car.image}`;
+            img.alt = car.name;
+            img.style.cssText = 'width: 100%; height: 100%; object-fit: cover; border-radius: 8px;';
+            img.onerror = () => {
+              imageDiv.innerHTML = car.name;
+            };
+            imageDiv.appendChild(img);
+          } else {
+            imageDiv.innerHTML = car.name;
+          }
+          
+          card.innerHTML = `
+            <h3>${car.name}</h3>
+            <p class="meta">${car.category}</p>
+            <p class="meta">Starting at $${car.base_price.toLocaleString()}</p>
+            <div class="actions">
+              <button class="btn" type="button" data-href="/customize?model=${encodeURIComponent(car.name)}&image=${encodeURIComponent(car.image || '')}&category=${encodeURIComponent(car.category)}&basePrice=${car.base_price}&carId=${car._id || car.id}">Customize</button>
+            </div>
+          `;
+          
+          card.insertBefore(imageDiv, card.firstChild);
+          carsGrid.appendChild(card);
+        });
+
+        // Ensure customize button navigates
+        carsGrid.addEventListener('click', (e) => {
+          const btn = e.target.closest('button.btn[data-href]');
+          if(btn){
+            const target = btn.getAttribute('data-href');
+            if(target){ window.location.href = target; }
+          }
+        });
+      } catch (error) {
+        console.error('Failed to load cars:', error);
+        carsGrid.innerHTML = '<div class="card"><h3>Error loading cars</h3><p class="meta">Please try refreshing the page.</p></div>';
+      }
+    });
+
+  </script>
+  
+  <!-- Preloader Script -->
+  <script src="/js/preloader.js"></script>
+</body>
+</html>

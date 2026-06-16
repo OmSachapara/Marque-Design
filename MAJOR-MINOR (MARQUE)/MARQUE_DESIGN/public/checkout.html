@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MARQUE DESIGN - Checkout</title>
+  <link rel="stylesheet" href="/css/styles.css">  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/preloader.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a href="/" class="logo">MARQUE <span>DESIGN</span></a>
+      
+      <nav id="nav-menu">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/cars">Cars</a>
+        <a href="/customize">Customize</a>
+        <a href="/favorites">Favorites</a>
+        <a href="/checkout" class="active">Checkout</a>
+        <a href="/profile">Profile</a>
+        <a href="/login" id="auth-link">Sign In</a>
+      </nav>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>Checkout</h1>
+      <p>Review your customized build and complete your order.</p>
+    </section>
+    <section class="row">
+      <div class="col">
+        <div class="card" id="summary">
+          <!-- Order summary will be populated by JavaScript -->
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h3>Contact Information</h3>
+          <form id="checkout-form">
+            <div class="field">
+              <label>Full Name</label>
+              <input required type="text" id="customer-name" placeholder="Enter your full name">
+            </div>
+            <div class="field">
+              <label>Email Address</label>
+              <input required type="email" id="customer-email" placeholder="Enter your email">
+            </div>
+            <div class="field">
+              <label>Phone Number *</label>
+              <input required type="tel" id="customer-phone" placeholder="Enter your phone number">
+            </div>
+            <div class="field">
+              <label>Delivery Address *</label>
+              <textarea required id="customer-address" rows="3" placeholder="Enter your delivery address"></textarea>
+            </div>
+            <div class="field">
+              <label class="checkbox-label">
+                <input type="checkbox" required>
+                <span class="checkmark"></span>
+                I agree to the <a href="/privacy-policy" target="_blank" style="color: var(--accent);">Privacy Policy</a> and <a href="/terms-of-service" target="_blank" style="color: var(--accent);">Terms of Service</a>
+              </label>
+            </div>
+            <div style="margin-bottom: 1rem; padding: 0.75rem; background: rgba(120,93,50,.1); border-radius: 8px; border: 1px solid rgba(120,93,50,.3);">
+              <p style="margin: 0; font-size: 0.85rem; color: var(--muted);">
+                <strong>Privacy Notice:</strong> Your personal information will be used to process your order and improve our services. 
+                We do not share your data with third parties except as outlined in our 
+                <a href="/privacy-policy" style="color: var(--accent);">Privacy Policy</a>.
+              </p>
+            </div>
+            <div class="actions">
+              <button class="btn" type="submit">🛒 Place Order</button>
+              <a href="/customize" class="btn ghost">← Back to Customize</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 MARQUE DESIGN. All rights reserved. | 
+        <a href="/privacy-policy" style="color: var(--accent);">Privacy Policy</a> | 
+        <a href="/terms-of-service" style="color: var(--accent);">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+  <script src="/js/navbar.js"></script>  <script src="/js/common.js"></script>
+  <script src="/js/checkout.js"></script>
+  
+  <!-- Preloader Script -->
+  <script src="/js/preloader.js"></script>
+</body>
+</html>

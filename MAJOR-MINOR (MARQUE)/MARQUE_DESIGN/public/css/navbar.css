@@ -1,0 +1,381 @@
+/* Dynamic Navbar Styles */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(5, 10, 48, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(232, 217, 196, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+header.scrolled {
+    background: rgba(5, 10, 48, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #d4af37 0%, #f6e27a 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+}
+
+.logo::before {
+    content: '◆';
+    position: absolute;
+    left: -25px;
+    color: #d4af37;
+    font-size: 0.8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.logo::after {
+    content: '◆';
+    position: absolute;
+    right: -25px;
+    color: #d4af37;
+    font-size: 0.8rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.logo span {
+    background: linear-gradient(135deg, #f5f7fb 0%, #b7c0cf 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+}
+
+nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 2px;
+    background: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+nav a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+nav a.active {
+    color: var(--accent);
+    background: rgba(212, 175, 55, 0.15);
+}
+
+nav a.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* User greeting styling */
+#auth-link .user-greeting {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.08));
+    padding: 0.7rem 1.4rem;
+    border-radius: 12px;
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#auth-link .user-greeting::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+#auth-link:hover .user-greeting::before {
+    left: 100%;
+}
+
+#auth-link:hover .user-greeting {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.15));
+    border-color: rgba(212, 175, 55, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* Auth Link with Dropdown */
+#auth-link {
+    position: relative;
+    cursor: pointer;
+}
+
+#auth-link.has-dropdown {
+    padding-right: 1rem;
+}
+
+/* Removed the arrow - no ::before pseudo-element */
+
+.user-greeting {
+    display: inline-block;
+}
+
+.auth-dropdown {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    background: rgba(10, 15, 31, 0.98);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+#auth-link.has-dropdown:hover .auth-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.dropdown-item:first-child {
+    border-radius: 16px 16px 0 0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+    border-radius: 0 0 16px 16px;
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.08));
+    color: var(--accent);
+    transform: translateX(8px);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.dropdown-item svg,
+.dropdown-item i {
+    font-size: 1.3rem;
+    width: 24px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-item:hover svg,
+.dropdown-item:hover i {
+    transform: scale(1.2);
+}
+
+.dropdown-item.logout {
+    color: #ff6b6b;
+    margin-top: 0.25rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    font-weight: 700;
+}
+
+.dropdown-item.logout:hover {
+    background: linear-gradient(90deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.08));
+    color: #ff4757;
+    text-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+    margin: 0.5rem 0;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav {
+        padding: 1rem;
+    }
+
+    nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(5, 10, 48, 0.98);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        gap: 1rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        border-top: 1px solid rgba(232, 217, 196, 0.1);
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+
+    nav.active {
+        transform: translateX(0);
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .auth-dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        margin-top: 1rem;
+        box-shadow: none;
+    }
+
+    #auth-link.has-dropdown:hover .auth-dropdown {
+        display: block;
+    }
+}
+
+/* Smooth page transitions */
+body {
+    padding-top: 70px;
+}
+
+/* Loading animation for navbar */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header {
+    animation: fadeInDown 0.5s ease;
+}
